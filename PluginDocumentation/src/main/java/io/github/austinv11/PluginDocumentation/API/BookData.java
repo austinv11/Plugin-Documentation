@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.ChatColor;
+
 public class BookData implements IBookData{
 	private boolean HAS_LINKS = false;
 	private HashMap<String, String> LINKS = null;
@@ -134,11 +136,46 @@ public class BookData implements IBookData{
 
 	private List<String> formatContents(boolean cache){
 		List<String> page = new ArrayList<String>();
+		List<String> temp = new ArrayList<String>();
+		int key;
+		if (CONTENTS != null){
+			for (int i = 0; i < NUMBER_OF_CHAPTERS; i++){
+				String chapter = null;
+				String text = null;
+				key = i;
+				if (!CONTENTS.containsKey(0)){
+					key++;
+				}
+				temp = CONTENTS.get(key);
+				if (temp.get(0).contains("$$TITLE$$")){
+					chapter = ChatColor.translateAlternateColorCodes('&', temp.get(0).replaceAll("$$TITLE$$", "").replaceFirst("=", "").replaceAll("\"", "").trim());
+					temp.remove(0);
+				}
+				if (chapter != null){
+					text = chapter+"\n\n"+ChatColor.RESET;
+				}
+				for (int j = 0; j < temp.size(); j++){
+					text = text+ChatColor.translateAlternateColorCodes('&', temp.get(j));
+				}
+				if (text.length() > 256){//TODO improve page wrapping (so words don't get cut off)
+					while (text.length() > 256){
+						page.add(text.substring(0, 256));
+						text = text.substring(256);
+						if (chapter != null){
+							text = chapter+ChatColor.RESET+" (cont.)\n\n";
+						}
+					}
+				}else{
+					page.add(text);
+				}
+			}
+		}else{
+			page = null;
+		}
 		if (cache){
-			
+			pages.put(this.TITLE, page);
 			return null;
 		}else{
-			
 			return page;
 		}
 	}
