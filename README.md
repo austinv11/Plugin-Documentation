@@ -47,7 +47,7 @@ If HasLinks is true, it must include:
 "Sectioned": "false",
 "Version": "1.0.0-pre",
 "HasLinks": "true",
-"Chatpters": "3",
+"Chapters": "3",
 "Links": [{"Title": "Screenshots","URL": "coolpix.com"},{"Title": "See more info here:","URL": "wiki.website.com"}]
 }
 ```
@@ -66,7 +66,7 @@ Each section must have its own directory, named after the section title as defin
 ```JSON
 {
 "HasLinks": "true",
-"Chatpters": "3",
+"Chapters": "3",
 "Links": [{"Title": "Screenshots","URL": "coolpix.com"},{"Title": "See more info here:","URL": "wiki.website.com"}]
 }
 ```
