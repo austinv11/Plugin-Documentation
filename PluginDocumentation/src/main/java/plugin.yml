@@ -17,6 +17,12 @@ commands:
       usage: /<command>
       permission: PluginDocumentation.dump
       permission-message: You don't have permission
+   plugin-list:
+      description: Lists all the currently supported plugins.
+      usage: /<command>
+      permission: PluginDocumentation.plugin-list
+      permission-message: You don't have permission
+      aliases: [plugins-list,pluginlist,pluginslist]
 
 permissions:
    PluginDocumentation.*:
@@ -26,3 +32,6 @@ permissions:
       default: true
    PluginDocumentation.dump:
       description: Dumps all (if present) cached data.
+   PluginDocumentation.plugin-list:
+      description: Lists all the currently supported plugins.
+      default: true

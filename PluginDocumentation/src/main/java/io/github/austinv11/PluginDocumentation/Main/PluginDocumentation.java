@@ -15,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class PluginDocumentation extends JavaPlugin{
 	FileConfiguration config = getConfig();
 	List<String> contributors = null;
+	List<String> plugins = null;
 	
 	@Override
 	public void onEnable(){
@@ -35,6 +36,7 @@ public class PluginDocumentation extends JavaPlugin{
 	
 	private void dump(){
 		contributors = null;
+		plugins = null;
 		BookFactory.dump();
 		BookData.dump();
 	}
@@ -71,6 +73,33 @@ public class PluginDocumentation extends JavaPlugin{
 		}else if (cmd.getName().equalsIgnoreCase("dump")){
 			sender.sendMessage("Dumping all cached data...");
 			dump();
+			return true;
+		}else if (cmd.getName().equalsIgnoreCase("plugin-list")){
+			try{
+				if (config.getBoolean("InternalCaching")){
+					if (plugins == null){
+						plugins = URLUtils.readGithub("PLUGINS.md");
+					}
+				}
+				List<String> temp;
+				if (plugins == null){
+					temp = URLUtils.readGithub("PLUGINS.md");
+				}else{
+					temp = plugins;
+				}
+				String list = null;
+				for (int i = 0; i < temp.size(); i++){
+					if (list == null){
+						list = temp.get(i).replaceFirst("*","").trim();
+					}else{
+						list = list+", "+temp.get(i).replaceFirst("*","").trim();
+					}
+				}
+				sender.sendMessage(list);
+			}catch (Exception e){
+				sender.sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
+				sender.sendMessage("Please report this to the plugin author ASAP!");
+			}
 			return true;
 		}
 		return false;
