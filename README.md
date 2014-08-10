@@ -18,6 +18,7 @@ Every plugin section needs an index.json file, this defines all important variab
 
 If you want to learn about .json files, visit [here](http://www.w3schools.com/json/json_syntax.asp). Every index.json file **must** include the following variables: 
 * Sectioned (true/false) --Whether the documentation contains sections
+* Version (String) --Must be changed after every revision
 
 Based upon the aforementioned variables, some variables must be included, if Sectioned is true it must include:
 * Sections (String Array) --A list of the names of the sections
@@ -27,13 +28,14 @@ If Sectioned is false, it must include:
 * Chapters (integer) --The number of chapters
 
 If HasLinks is true, it must include:
-* Links (JSON Array)
+* Links (JSON Array) --An Array of links and their titles
 
 ###Example index.json file for Towny
 
 ```JSON
 {
 "Sectioned": "true",
+"Version": "1.0.0",
 "Sections": "[Towns, Nations]"
 }
 ```
@@ -43,6 +45,7 @@ If HasLinks is true, it must include:
 ```JSON
 {
 "Sectioned": "false",
+"Version": "1.0.0-pre",
 "HasLinks": "true",
 "Chatpters": "3",
 "Links": [{"Title": "Screenshots","URL": "coolpix.com"},{"Title": "See more info here:","URL": "wiki.website.com"}]
@@ -56,7 +59,7 @@ You could then write the entire chapter in this text file without any special fo
 
 ##Formatting documentation with sections
 
-Each section must have its own directory, named after the section title as defined with the Sections variable **THEY MUST MATCH EXACTLY**, each directory must have its own index.json file. This index.json file is formatted just like the original, except it must be done as if Sectioned is false (the section variable is also unneeded). Each section can then be treated as documentation for individual plugins.
+Each section must have its own directory, named after the section title as defined with the Sections variable **THEY MUST MATCH EXACTLY**, each directory must have its own index.json file. This index.json file is formatted just like the original, except it must be done as if Sectioned is false (the Sectioned and Version variables are also unneeded). Each section can then be treated as documentation for individual plugins.
 
 ###Example index.json
 
