@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.github.austinv11.PluginDocumentation.API.BookData;
 import io.github.austinv11.PluginDocumentation.API.BookFactory;
+import io.github.austinv11.PluginDocumentation.Lib.BookDataFactory;
 import io.github.austinv11.PluginDocumentation.Lib.URLUtils;
 
 import org.bukkit.ChatColor;
@@ -39,6 +40,7 @@ public class PluginDocumentation extends JavaPlugin{
 		plugins = null;
 		BookFactory.dump();
 		BookData.dump();
+		BookDataFactory.dump();
 	}
 	
 	@Override

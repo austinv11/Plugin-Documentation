@@ -29,7 +29,7 @@ public class URLUtils {
 	public static List<String> readGithub(String path) throws Exception{
 		List<String> in = URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+path);
 		if (in.contains("Not Found")){
-			throw new NotFoundException();//TODO add message
+			throw new NotFoundException();//TODO add message, possibly, "404 Path "+path+" not found"
 		}
 		return in;
 	}

@@ -25,6 +25,9 @@ public class BookFactory {
 			BookMeta bm = (BookMeta) book.getItemMeta();
 			bm.setAuthor(data.getAuthor());
 			List<String> lore = new ArrayList<String>();
+			if (data.hasLinks()){
+				lore.add("Has Links");
+			}
 			lore.add(ChatColor.GRAY+"Version: "+data.getVersion());
 			bm.setLore(lore);
 			bm.setDisplayName(data.getTitle());
