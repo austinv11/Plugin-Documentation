@@ -1,2 +1,2 @@
-austinv11
-grand_mind1
+* austinv11
+* grand_mind1
