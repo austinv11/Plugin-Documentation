@@ -12,9 +12,9 @@ public class URLUtils {
 		if (!url.contains("http://") && !url.contains("https://")){
 			url = "http://"+url;
 		}
-		if (!url.endsWith("/")){
+		/*if (!url.endsWith("/")){
 			url = url+"/";
-		}
+		}*/
 		URL input = new URL(url);
 		BufferedReader in = new BufferedReader(new InputStreamReader(input.openStream()));
 		String temp;

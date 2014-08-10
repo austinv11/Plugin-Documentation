@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class PluginDocumentation extends JavaPlugin{
 	FileConfiguration config = getConfig();
+	List<String> contributors = null;
 	
 	@Override
 	public void onEnable(){
@@ -24,7 +25,7 @@ public class PluginDocumentation extends JavaPlugin{
 	
 	private void configInit(){
 		config.addDefault("InternalCaching", true);
-		config.addDefault("ExternalCaching", true);
+		//config.addDefault("ExternalCaching", true); TODO
 		config.addDefault("ShowLinks", true);
 		config.options().copyDefaults(true);
 		saveConfig();
@@ -34,13 +35,23 @@ public class PluginDocumentation extends JavaPlugin{
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("contributors")){
 			try{
-				List<String> contributors = URLUtils.readGithub("CONTRIBUTORS.md/");
+				if (config.getBoolean("InternalCaching")){
+					if (contributors == null){
+						contributors = URLUtils.readGithub("CONTRIBUTORS.md");
+					}
+				}
+				List<String> temp;
+				if (contributors == null){
+					temp = URLUtils.readGithub("CONTRIBUTORS.md");
+				}else{
+					temp = contributors;
+				}
 				String list = null;
-				for (int i = 0; i < contributors.size(); i++){
+				for (int i = 0; i < temp.size(); i++){
 					if (list == null){
-						list = contributors.get(i);
+						list = temp.get(i);
 					}else{
-						list = list+", "+contributors.get(i);
+						list = list+", "+temp.get(i);
 					}
 				}
 				sender.sendMessage(list);
