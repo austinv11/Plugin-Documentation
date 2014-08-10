@@ -36,7 +36,7 @@ If HasLinks is true, it must include:
 {
 "Sectioned": "true",
 "Version": "1.0.0",
-"Sections": "[Towns, Nations]"
+"Sections": ["Towns", "Nations"]
 }
 ```
 
