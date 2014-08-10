@@ -1,0 +1,20 @@
+name: PluginDocumentation
+version: 1.0.0
+description: A plugin aimed at centralizing plugin documentation in game.
+author: austinv11
+website: austinv11.github.io
+ 
+main: io.github.austinv11.PluginDocumentation.Main.PluginDocumentation
+commands:
+   contributors:
+      description: Prints a list of contributors to the project.
+      usage: /<command>
+      permission: PluginDocumentation.contributors
+      permission-message: You don't have permission
+      aliases: [authors]
+
+permissions:
+   PluginDocumentation.*:
+      description: Gives access to all PluginDocumentation commands
+   PluginDocumentation.contributors:
+      description: Prints a list of contributors to the project.
