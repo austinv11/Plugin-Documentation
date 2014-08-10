@@ -27,6 +27,10 @@ public class URLUtils {
 	}
 	
 	public static List<String> readGithub(String path) throws Exception{
-		return URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+path);
+		List<String> in = URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+path);
+		if (in.contains("Not Found")){
+			throw new NotFoundException();//TODO add message
+		}
+		return in;
 	}
 }
