@@ -3,14 +3,16 @@ package io.github.austinv11.PluginDocumentation.Main;
 import java.util.List;
 
 import io.github.austinv11.PluginDocumentation.API.BookData;
+import io.github.austinv11.PluginDocumentation.API.BookDataFactory;
 import io.github.austinv11.PluginDocumentation.API.BookFactory;
-import io.github.austinv11.PluginDocumentation.Lib.BookDataFactory;
 import io.github.austinv11.PluginDocumentation.Lib.URLUtils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PluginDocumentation extends JavaPlugin{
@@ -103,6 +105,35 @@ public class PluginDocumentation extends JavaPlugin{
 				sender.sendMessage("Please report this to the plugin author ASAP!");
 			}
 			return true;
+		}else if (cmd.getName().equalsIgnoreCase("plugin-help")){
+			if (args.length > 0){
+				if (sender instanceof Player){
+					try{
+						sender.sendMessage("Attempting to fetch documentation, please wait...");
+						Player player = (Player) sender;
+						BookData data = BookDataFactory.newBookData(args[0]);
+						if (data == null){
+							List<BookData> dataList = BookDataFactory.newBookDataList(args[0]);
+							for (int i = 0; i < dataList.size(); i++){
+								data = dataList.get(i);
+								ItemStack book = BookFactory.newBook(data);
+								player.getInventory().addItem(book);
+							}
+							sender.sendMessage(ChatColor.GREEN+"Here you go!");
+						}else{
+							ItemStack book = BookFactory.newBook(data);
+							player.getInventory().addItem(book);
+							sender.sendMessage(ChatColor.GREEN+"Here you go!");
+						}
+					}catch (Exception e){
+						sender.sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
+						sender.sendMessage("If you are certain that the documentation exists, report this to the plugin author ASAP!");
+					}
+				}else{
+					sender.sendMessage(ChatColor.RED+"Sorry, only a player can perform this command");
+				}
+				return true;
+			}
 		}
 		return false;
 	}

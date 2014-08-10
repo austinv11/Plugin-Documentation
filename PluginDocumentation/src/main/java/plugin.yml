@@ -23,6 +23,12 @@ commands:
       permission: PluginDocumentation.plugin-list
       permission-message: You don't have permission
       aliases: [plugins-list,pluginlist,pluginslist]
+   plugin-help:
+      description: Attempts to fetch documentation for the given plugin.
+      usage: /<command> <plugin>
+      permission: PluginDocumentation.plugin-help
+      permission-message: You don't have permission
+      aliases: [plugins-help,pluginhelp,pluginshelp]
 
 permissions:
    PluginDocumentation.*:
@@ -34,4 +40,7 @@ permissions:
       description: Dumps all (if present) cached data.
    PluginDocumentation.plugin-list:
       description: Lists all the currently supported plugins.
+      default: true
+   PluginDocumentation.plugin-help:
+      description: Attempts to fetch documentation for the given plugin.
       default: true
