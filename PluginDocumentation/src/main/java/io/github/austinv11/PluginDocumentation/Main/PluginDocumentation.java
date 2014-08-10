@@ -57,9 +57,9 @@ public class PluginDocumentation extends JavaPlugin{
 				String list = null;
 				for (int i = 0; i < temp.size(); i++){
 					if (list == null){
-						list = temp.get(i);
+						list = temp.get(i).replaceFirst("*","").trim();
 					}else{
-						list = list+", "+temp.get(i);
+						list = list+", "+temp.get(i).replaceFirst("*","").trim();
 					}
 				}
 				sender.sendMessage(list);
