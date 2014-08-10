@@ -2,6 +2,8 @@ package io.github.austinv11.PluginDocumentation.Main;
 
 import java.util.List;
 
+import io.github.austinv11.PluginDocumentation.API.BookData;
+import io.github.austinv11.PluginDocumentation.API.BookFactory;
 import io.github.austinv11.PluginDocumentation.Lib.URLUtils;
 
 import org.bukkit.ChatColor;
@@ -29,6 +31,12 @@ public class PluginDocumentation extends JavaPlugin{
 		config.addDefault("ShowLinks", true);
 		config.options().copyDefaults(true);
 		saveConfig();
+	}
+	
+	private void dump(){
+		contributors = null;
+		BookFactory.dump();
+		BookData.dump();
 	}
 	
 	@Override
@@ -59,6 +67,10 @@ public class PluginDocumentation extends JavaPlugin{
 				sender.sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
 				sender.sendMessage("Please report this to the plugin author ASAP!");
 			}
+			return true;
+		}else if (cmd.getName().equalsIgnoreCase("dump")){
+			sender.sendMessage("Dumping all cached data...");
+			dump();
 			return true;
 		}
 		return false;

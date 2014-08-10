@@ -11,10 +11,18 @@ commands:
       usage: /<command>
       permission: PluginDocumentation.contributors
       permission-message: You don't have permission
-      aliases: [authors]
+      aliases: [authors,contributers]
+   dump:
+      description: Dumps all (if present) cached data.
+      usage: /<command>
+      permission: PluginDocumentation.dump
+      permission-message: You don't have permission
 
 permissions:
    PluginDocumentation.*:
       description: Gives access to all PluginDocumentation commands
    PluginDocumentation.contributors:
       description: Prints a list of contributors to the project.
+      default: true
+   PluginDocumentation.dump:
+      description: Dumps all (if present) cached data.

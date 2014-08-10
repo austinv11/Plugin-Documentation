@@ -43,7 +43,13 @@ public interface IBookData {
 	
 	/**
 	 * Gets the contents of the book.
-	 * @return Hasmap with the contents of the chapters, formatted with <Chapter Number, Chapter Contents>.
+	 * @return Hashmap with the contents of the chapters, formatted with <Chapter Number, Chapter Contents>.
 	 */
 	public HashMap<Integer, List<String>> getContents();
+	
+	/**
+	 * Creates and gets the pages in a book.
+	 * @return String array with the pages.
+	 */
+	public List<String> getPages();
 }
