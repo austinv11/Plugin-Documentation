@@ -7,9 +7,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import io.github.austinv11.PluginDocumentation.API.BookData;
+import io.github.austinv11.PluginDocumentation.Main.Resources;
 
 public class BookDataFactory {
-	public static HashMap<String, List<String>> linkCache = null;
+	public static HashMap<String, HashMap<String,String>> linkCache = null;
 	
 	public static void dump(){
 		linkCache = null;
@@ -20,7 +21,7 @@ public class BookDataFactory {
 		JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/index.json"));
 		version = (String) json.get("Version");
 		if ((boolean) json.get("Sectioned")){
-			
+			return null;
 		}else{
 			int chapters = (int) json.get("Chapters");
 			HashMap<Integer, List<String>> contents = null;
@@ -44,11 +45,21 @@ public class BookDataFactory {
 					JSONObject linkJSON = (JSONObject) array.get(j);
 					links.put((String)linkJSON.get("Title"), (String)linkJSON.get("URL"));
 				}
+				if (Resources.CONFG.getBoolean("InternalCaching")){
+					linkCache.put(plugin.toUpperCase(), links);
+				}
 				return new BookData(true,links,plugin.toUpperCase(),version,chapters,"PluginDoumentation",contents);
 			}else{
 				return new BookData(false,null,plugin.toUpperCase(),version,chapters,"PluginDoumentation",contents);
 			}
 		}
+	}
+	
+	public static List<BookData> newBookDataList(String plugin) throws Exception{
+		String version;
+		JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/index.json"));
+		version = (String) json.get("Version");
+		
 		return null;
 	}
 }
