@@ -117,15 +117,15 @@ public class BookDataFactory {
 						links.put((String)linkJSON.get("Title"), (String)linkJSON.get("URL"));
 					}
 					if (Resources.CONFG.getBoolean("InternalCaching")){
-						linkCache.put((String)array.get(iterator), links);
-						dataCache.put((String)array.get(iterator), new BookData(true,links,(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
+						linkCache.put(plugin.toUpperCase()+":"+(String) array.get(iterator), links);
+						dataCache.put((String)array.get(iterator), new BookData(true,links,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
 					}
-					data.add(new BookData(true,links,(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
+					data.add(new BookData(true,links,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
 				}else{
 					if (Resources.CONFG.getBoolean("InternalCaching")){
-						dataCache.put((String)array.get(iterator), new BookData(false,null,(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
+						dataCache.put((String)array.get(iterator), new BookData(false,null,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
 					}
-					data.add(new BookData(false,null,(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
+					data.add(new BookData(false,null,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
 				}
 			}
 		}
