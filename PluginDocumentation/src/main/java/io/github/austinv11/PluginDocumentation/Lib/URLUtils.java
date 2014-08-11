@@ -43,6 +43,7 @@ public class URLUtils {
 		a.append("&api_option=paste");
 		a.append("&api_paste_code="+contents);
 		a.append("&api_paste_name=BookData");
+		String text = a.toString();
 		URL url = new URL("http://pastebin.com/api/api_post.php");
 		HttpURLConnection urlC = (HttpURLConnection) url.openConnection();
 		urlC.setDoOutput(true);
@@ -51,10 +52,10 @@ public class URLUtils {
 		urlC.setRequestMethod("POST");
 		urlC.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 		urlC.setRequestProperty("charset", "utf-8");
-        urlC.setRequestProperty("Content-Length", "" + contents.getBytes().length);
+        urlC.setRequestProperty("Content-Length", "" + text.getBytes().length);
         urlC.setUseCaches(false);
         DataOutputStream wr = new DataOutputStream(urlC.getOutputStream());
-        wr.writeBytes(contents);
+        wr.writeBytes(text);
         wr.flush();
         wr.close();
         urlC.disconnect();
