@@ -31,8 +31,10 @@ public class BookDataFactory {
 	 */
 	//TODO Add event to allow plugins to hook into this.
 	public static BookData newBookData(String plugin) throws Exception{
-		if (dataCache.containsKey(plugin.toUpperCase())){
-			return dataCache.get(plugin.toUpperCase());
+		if (dataCache != null){
+			if (dataCache.containsKey(plugin.toUpperCase())){
+				return dataCache.get(plugin.toUpperCase());
+			}
 		}
 		String version;
 		JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/index.json"));

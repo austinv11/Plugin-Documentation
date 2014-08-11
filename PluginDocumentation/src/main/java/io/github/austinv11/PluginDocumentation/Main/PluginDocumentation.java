@@ -63,9 +63,9 @@ public class PluginDocumentation extends JavaPlugin{
 				String list = null;
 				for (int i = 0; i < temp.size(); i++){
 					if (list == null){
-						list = temp.get(i).replaceFirst("*","").trim();
+						list = temp.get(i).replaceFirst("-","").trim();
 					}else{
-						list = list+", "+temp.get(i).replaceFirst("*","").trim();
+						list = list+", "+temp.get(i).replaceFirst("-","").trim();
 					}
 				}
 				sender.sendMessage(list);
@@ -94,9 +94,9 @@ public class PluginDocumentation extends JavaPlugin{
 				String list = null;
 				for (int i = 0; i < temp.size(); i++){
 					if (list == null){
-						list = temp.get(i).replaceFirst("*","").trim();
+						list = temp.get(i).replaceFirst("-","").trim();
 					}else{
-						list = list+", "+temp.get(i).replaceFirst("*","").trim();
+						list = list+", "+temp.get(i).replaceFirst("-","").trim();
 					}
 				}
 				sender.sendMessage(list);
@@ -126,6 +126,7 @@ public class PluginDocumentation extends JavaPlugin{
 							sender.sendMessage(ChatColor.GREEN+"Here you go!");
 						}
 					}catch (Exception e){
+						e.printStackTrace();
 						sender.sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
 						sender.sendMessage("If you are certain that the documentation exists, report this to the plugin author ASAP!");
 					}
