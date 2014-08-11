@@ -7,7 +7,9 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import io.github.austinv11.PluginDocumentation.Lib.Index;
 import io.github.austinv11.PluginDocumentation.Lib.JSONUtils;
+import io.github.austinv11.PluginDocumentation.Lib.Links;
 import io.github.austinv11.PluginDocumentation.Lib.URLUtils;
 import io.github.austinv11.PluginDocumentation.Main.Resources;
 
@@ -37,12 +39,15 @@ public class BookDataFactory {
 			}
 		}
 		String version;
-		JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/index.json"));
-		version = (String) json.get("Version");
-		if ((boolean) json.get("Sectioned")){
+		//JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/index.json"));
+		Index json = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/index.json"));
+		//version = (String) json.get("Version");
+		version = json.Version;
+		if (/*(boolean) json.get("Sectioned")*/json.Sectioned){
 			return null;
 		}else{
-			int chapters = (int) json.get("Chapters");
+			//int chapters = (int) json.get("Chapters");
+			int chapters = json.Chapters;
 			HashMap<Integer, List<String>> contents = null;
 			boolean startAtOne = false;
 			if (!URLUtils.URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+plugin.toUpperCase()+"/Chatpter0.txt").contains("Not Found")){
@@ -56,13 +61,15 @@ public class BookDataFactory {
 				}
 				contents.put(key, URLUtils.readGithub(plugin.toUpperCase()+"/Chapter"+key+".txt"));
 			}
-			if ((boolean) json.get("HasLinks")){
+			if (/*(boolean) json.get("HasLinks")*/json.HasLinks){
 				HashMap<String,String> links = null;
-				JSONArray array = (JSONArray) json.get("Links");
-				array.iterator();
-				for (int j = 0; j < array.size(); j++){
-					JSONObject linkJSON = (JSONObject) array.get(j);
-					links.put((String)linkJSON.get("Title"), (String)linkJSON.get("URL"));
+				//JSONArray array = (JSONArray) json.get("Links");
+				Links[] array = json.Links;
+				for (int j = 0; j < /*array.size()*/array.length; j++){
+					/*JSONObject linkJSON = (JSONObject) array.get(j);
+					links.put((String)linkJSON.get("Title"), (String)linkJSON.get("URL"));*/
+					Links linkJSON = array[j];
+					links.put(linkJSON.Title, linkJSON.URL);
 				}
 				if (Resources.CONFG.getBoolean("InternalCaching")){
 					linkCache.put(plugin.toUpperCase(), links);
@@ -87,19 +94,24 @@ public class BookDataFactory {
 	public static List<BookData> newBookDataList(String plugin) throws Exception{
 		List<BookData> data = new ArrayList<BookData>();
 		String version;
-		JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/index.json"));
-		version = (String) json.get("Version");
-		JSONArray array = (JSONArray) json.get("Sections");
-		for (int iterator = 0; iterator < array.size(); iterator++){
-			if (dataCache.containsKey(array.get(iterator))){
-				data.add(dataCache.get(array.get(iterator)));
+		//JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/index.json"));
+		Index json = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/index.json"));
+		//version = (String) json.get("Version");
+		version = json.Version;
+		//JSONArray array = (JSONArray) json.get("Sections");
+		String[] array = json.Sections;
+		for (int iterator = 0; iterator < /*array.size()*/array.length; iterator++){
+			if (dataCache.containsKey(/*array.get(iterator)*/array[iterator])){
+				data.add(dataCache.get(/*array.get(iterator)*/array[iterator]));
 			}else{
-				JSONObject sectionJSON = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/"+array.get(iterator)+"/index.json"));
+				//JSONObject sectionJSON = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/"+array.get(iterator)+"/index.json"));
+				Index sectionJSON = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/"+array[iterator]+"/index.json"));
 				//Modified, but taken from newBookData()
-				int chapters = (int) sectionJSON.get("Chapters");
+				//int chapters = (int) sectionJSON.get("Chapters");
+				int chapters = sectionJSON.Chapters;
 				HashMap<Integer, List<String>> contents = null;
 				boolean startAtOne = false;
-				if (!URLUtils.URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+plugin.toUpperCase()+"/"+array.get(iterator)+"/Chatpter0.txt").contains("Not Found")){
+				if (!URLUtils.URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+plugin.toUpperCase()+"/"+array[iterator]/*.get(iterator)*/+"/Chatpter0.txt").contains("Not Found")){
 					startAtOne = true;
 				}
 				int key = 0;
@@ -108,26 +120,31 @@ public class BookDataFactory {
 					if (startAtOne){
 						key++;
 					}
-					contents.put(key, URLUtils.readGithub(plugin.toUpperCase()+"/"+array.get(iterator)+"/Chapter"+key+".txt"));
+					contents.put(key, URLUtils.readGithub(plugin.toUpperCase()+"/"+array[iterator]/*.get(iterator)*/+"/Chapter"+key+".txt"));
 				}
-				if ((boolean) sectionJSON.get("HasLinks")){
+				if (/*(boolean) sectionJSON.get("HasLinks")*/sectionJSON.HasLinks){
 					HashMap<String,String> links = null;
-					JSONArray sectionArray = (JSONArray) sectionJSON.get("Links");
-					sectionArray.iterator();
-					for (int j = 0; j < sectionArray.size(); j++){
-						JSONObject linkJSON = (JSONObject) sectionArray.get(j);
-						links.put((String)linkJSON.get("Title"), (String)linkJSON.get("URL"));
+					//JSONArray sectionArray = (JSONArray) sectionJSON.get("Links");
+					Links[] sectionArray = sectionJSON.Links;
+					for (int j = 0; j < sectionArray.length/*.size()*/; j++){
+						//JSONObject linkJSON = (JSONObject) sectionArray.get(j);
+						Links linkJSON = sectionArray[j];
+						//links.put((String)linkJSON.get("Title"), (String)linkJSON.get("URL"));
+						links.put(linkJSON.Title, linkJSON.URL);
 					}
 					if (Resources.CONFG.getBoolean("InternalCaching")){
-						linkCache.put(plugin.toUpperCase()+":"+(String) array.get(iterator), links);
-						dataCache.put((String)array.get(iterator), new BookData(true,links,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
+						/*linkCache.put(plugin.toUpperCase()+":"+(String) array.get(iterator), links);
+						dataCache.put((String)array.get(iterator), new BookData(true,links,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));*/
+						linkCache.put(plugin.toUpperCase()+":"+array[iterator], links);
+						dataCache.put(array[iterator], new BookData(true,links,plugin.toUpperCase()+":"+array[iterator],version,chapters,"PluginDoumentation",contents));
 					}
-					data.add(new BookData(true,links,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
+					data.add(new BookData(true,links,plugin.toUpperCase()+":"+/*(String) array.get(iterator)*/array[iterator],version,chapters,"PluginDoumentation",contents));
 				}else{
 					if (Resources.CONFG.getBoolean("InternalCaching")){
-						dataCache.put((String)array.get(iterator), new BookData(false,null,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
+						//dataCache.put((String)array.get(iterator), new BookData(false,null,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
+						dataCache.put(array[iterator], new BookData(false,null,plugin.toUpperCase()+":"+array[iterator],version,chapters,"PluginDoumentation",contents));
 					}
-					data.add(new BookData(false,null,plugin.toUpperCase()+":"+(String) array.get(iterator),version,chapters,"PluginDoumentation",contents));
+					data.add(new BookData(false,null,plugin.toUpperCase()+":"+/*(String) array.get(iterator)*/array[iterator],version,chapters,"PluginDoumentation",contents));
 				}
 			}
 		}

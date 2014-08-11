@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import io.github.austinv11.PluginDocumentation.API.BookDataFactory;
+import io.github.austinv11.PluginDocumentation.Lib.Index;
 import io.github.austinv11.PluginDocumentation.Lib.JSONUtils;
+import io.github.austinv11.PluginDocumentation.Lib.Links;
 import io.github.austinv11.PluginDocumentation.Lib.URLUtils;
 import io.github.austinv11.PluginDocumentation.Main.Resources;
 
@@ -50,18 +52,24 @@ public class BookOpenListener implements Listener{
 												String[] split = title.split(":");
 												title = split[1];
 												String plugin = split[0];
-												JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(plugin+"/"+title+"/index.json"));
-												JSONArray array = (JSONArray) json.get("Links");
-												for (int j = 0; j < array.size(); j++){
-													JSONObject object = (JSONObject) array.get(j);
-													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', (String) object.get("Title"))+": "+ChatColor.translateAlternateColorCodes('&', (String) object.get("URL")));
+												//JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(plugin+"/"+title+"/index.json"));
+												Index json = JSONUtils.listToJSON(URLUtils.readGithub(plugin+"/"+title+"/index.json"));
+												//JSONArray array = (JSONArray) json.get("Links");
+												Links[] array = json.Links;
+												for (int j = 0; j < /*array.size()*/array.length; j++){
+													/*JSONObject object = (JSONObject) array.get(j);
+													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', (String) object.get("Title"))+": "+ChatColor.translateAlternateColorCodes('&', (String) object.get("URL")));*/
+													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', array[j].Title)+": "+ChatColor.translateAlternateColorCodes('&', array[j].URL));
 												}
 											}else{
-												JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(title+"/index.json"));
-												JSONArray array = (JSONArray) json.get("Links");
-												for (int j = 0; j < array.size(); j++){
-													JSONObject object = (JSONObject) array.get(j);
-													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', (String) object.get("Title"))+": "+ChatColor.translateAlternateColorCodes('&', (String) object.get("URL")));
+												//JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(title+"/index.json"));
+												Index json = JSONUtils.listToJSON(URLUtils.readGithub(title+"/index.json"));
+												//JSONArray array = (JSONArray) json.get("Links");
+												Links[] array = json.Links;
+												for (int j = 0; j < /*array.size()*/array.length; j++){
+													/*JSONObject object = (JSONObject) array.get(j);
+													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', (String) object.get("Title"))+": "+ChatColor.translateAlternateColorCodes('&', (String) object.get("URL")));*/
+													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', array[j].Title)+": "+ChatColor.translateAlternateColorCodes('&', array[j].URL));
 												}
 											}
 										}catch (Exception e){
