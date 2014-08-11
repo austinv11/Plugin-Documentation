@@ -40,7 +40,7 @@ public class BookOpenListener implements Listener{
 							List<String> lore = meta.getLore();
 							for (int i = 0; i <lore.size(); i++){
 								if (lore.get(i).contains("Has Links")){
-									event.getPlayer().sendMessage(ChatColor.GOLD+"Here are some helpful links:");
+									event.getPlayer().sendMessage(ChatColor.GREEN+"========"+ChatColor.GOLD+"Helpful Links"+ChatColor.GREEN+"========");
 									if (BookDataFactory.linkCache.containsKey(meta.getTitle())){
 										for (Map.Entry<String, String> entry : BookDataFactory.linkCache.get(meta.getTitle()).entrySet()){
 											String key = entry.getKey();
@@ -82,6 +82,7 @@ public class BookOpenListener implements Listener{
 											}
 										}
 									}
+									event.getPlayer().sendMessage(ChatColor.GREEN+"===========================");
 									break;
 								}
 							}
