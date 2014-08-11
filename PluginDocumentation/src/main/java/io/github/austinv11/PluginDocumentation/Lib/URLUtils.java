@@ -12,6 +12,12 @@ import java.util.Scanner;
 
 public class URLUtils {
 	
+	/**
+	 * Gets a list representing the contents of the given url.
+	 * @param url The url to read from.
+	 * @return A list representing the contents of the given url.
+	 * @throws Exception
+	 */
 	public static List<String> URLReader(String url) throws Exception{
 		if (!url.contains("http://") && !url.contains("https://")){
 			url = "http://"+url;
@@ -30,6 +36,13 @@ public class URLUtils {
 		return read;
 	}
 	
+	/**
+	 * Shortcut method, automatically appends path to the PluginDocumentation (raw) repo.
+	 * @see URLReader
+	 * @param path The path from the root directory in the PluginDocumentation repo.
+	 * @return A list representing the contents of the given url.
+	 * @throws Exception
+	 */
 	public static List<String> readGithub(String path) throws Exception{
 		List<String> in = URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+path);
 		if (in.contains("Not Found")){
@@ -38,6 +51,12 @@ public class URLUtils {
 		return in;
 	}
 	
+	/**
+	 * Sends the given string to pastebin.
+	 * @param contents String to send to pastebin.
+	 * @return Link to paste.
+	 * @throws Exception
+	 */
 	public static String sendToPastebin(String contents) throws Exception{
 		StringBuffer a = new StringBuffer("api_dev_key=fe38c64db3a9bd5a8fe5e81d890a69ad");
 		a.append("&api_option=paste");

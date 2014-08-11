@@ -9,6 +9,12 @@ import com.google.gson.GsonBuilder;
 
 public class JSONUtils {
 	
+	/**
+	 * Converts a String List representing a json into an Index parsing class.
+	 * @param list List representing a json.
+	 * @return The index object holding the related info.
+	 * @throws Exception
+	 */
 	public static Index listToJSON(List<String> list) throws Exception{
 		String json = null;
 		for (int i = 0; i < list.size(); i++){
