@@ -3,6 +3,28 @@ Plugin-Documentation
 
 A project to document plugins and easily add it into in-game books
 
+In-Game Usage
+=============
+
+##How it works
+
+After using any of the commands (with the exception of /dump), the plugin will then read from various files in this repository. When using /plugin-list or /contributors, it'll generate a list from the respective PLUGINS.md and CONTRIBUTORS.md. When using /plugin-help, it'll look for the given plugin's index.json which gives the plugin 'directions' in order to find all the nesscesary info.
+This plugin also has a feature which allows for caching information from this repo internally. This will speed up the usage of commands (with the exception of the first time it is executed). However this is more taxing on RAM usage.
+
+##Commands
+
+* /contributors (perm node: PluginDocumentation.contributors): Prints a list of contributors to the project.
+* /dump (perm node: PluginDocumentation.dump): Dumps all currently cached data, lowering RAM usage (albeit temporarily)
+* /plugin-list (perm node: PluginDocumentation.plugin-list): Prints a list of plugins supported.
+* /plugin-help (perm node: PluginDocumentation.plugin-help): Attempts to fetch the documentation for the given plugin
+* /book-converter (perm node: PluginDocumentation.book-converter): Attempts to paste the contents of the book in your hand to pastebin-useful for transferring in-game documentation to this project. **WARNING:** May be removed in the future.
+
+##Config options
+
+* InternalCaching (deafault: true): Determines whether the plugin should actively cache data.
+* ShowLinks (default: true): Determines whether the plugin will display links if any given plugin documentation book has links.
+* Debug (deafult: false): Determines whether the plugin will print the stack trace if a command encounters an error.
+
 Formatting
 ==========
 
