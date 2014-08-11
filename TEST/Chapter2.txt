@@ -1,2 +1,2 @@
-$$TITLE&&="HELLO WORLD"
+$$TITLE$$="HELLO WORLD"
 Hi world!
