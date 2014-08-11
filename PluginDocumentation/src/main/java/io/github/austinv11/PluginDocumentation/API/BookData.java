@@ -10,13 +10,13 @@ import org.bukkit.ChatColor;
 
 public class BookData implements IBookData{
 	private boolean HAS_LINKS = false;
-	private HashMap<String, String> LINKS = null;
+	private HashMap<String, String> LINKS = new HashMap<String,String>();
 	private String TITLE = null;
 	private String VERSION = null;
 	private int NUMBER_OF_CHAPTERS = 0;
 	private String AUTHOR = "PluginDocumentation";
-	private HashMap<Integer, List<String>> CONTENTS = null;
-	private static HashMap<String,List<String>> pages;
+	private HashMap<Integer, List<String>> CONTENTS = new HashMap<Integer,List<String>>();
+	private static HashMap<String,List<String>> pages = new HashMap<String,List<String>>();
 	
 	/**
 	 * Used to create BlockData with default values, modifiable through methods.
@@ -148,14 +148,18 @@ public class BookData implements IBookData{
 				}
 				temp = CONTENTS.get(key);
 				if (temp.get(0).contains("$$TITLE$$")){
-					chapter = ChatColor.translateAlternateColorCodes('&', temp.get(0).replaceAll("$$TITLE$$", "").replaceFirst("=", "").replaceAll("\"", "").trim());
+					chapter = ChatColor.translateAlternateColorCodes('&', temp.get(0).replace("$$TITLE$$", "").replaceFirst("=", "").replaceAll("\"", "").trim());
 					temp.remove(0);
 				}
 				if (chapter != null){
 					text = chapter+"\n\n"+ChatColor.RESET;
 				}
 				for (int j = 0; j < temp.size(); j++){
-					text = text+ChatColor.translateAlternateColorCodes('&', temp.get(j));
+					if (text != null){
+						text = text+ChatColor.translateAlternateColorCodes('&', temp.get(j));
+					}else{
+						text = ChatColor.translateAlternateColorCodes('&', temp.get(j));
+					}
 				}
 				if (text.length() > 256){//TODO improve page wrapping (so words don't get cut off)
 					while (text.length() > 256){
@@ -194,6 +198,6 @@ public class BookData implements IBookData{
 	 * Dumps the cached data.
 	 */
 	public static void dump(){
-		pages = null;
+		pages = new HashMap<String,List<String>>();
 	}
 }

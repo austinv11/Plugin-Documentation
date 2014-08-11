@@ -1,11 +1,13 @@
 package io.github.austinv11.PluginDocumentation.Main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.github.austinv11.PluginDocumentation.API.BookData;
 import io.github.austinv11.PluginDocumentation.API.BookDataFactory;
 import io.github.austinv11.PluginDocumentation.API.BookFactory;
 import io.github.austinv11.PluginDocumentation.Lib.URLUtils;
+import io.github.austinv11.PluginDocumentation.Listeners.BookOpenListener;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -23,6 +25,7 @@ public class PluginDocumentation extends JavaPlugin{
 	@Override
 	public void onEnable(){
 		new Resources(config, this, getLogger());
+		new BookOpenListener();
 		configInit();
 	}
 	
@@ -120,7 +123,8 @@ public class PluginDocumentation extends JavaPlugin{
 						Player player = (Player) sender;
 						BookData data = BookDataFactory.newBookData(args[0]);
 						if (data == null){
-							List<BookData> dataList = BookDataFactory.newBookDataList(args[0]);
+							List<BookData> dataList = new ArrayList<BookData>();
+							dataList = BookDataFactory.newBookDataList(args[0]);
 							for (int i = 0; i < dataList.size(); i++){
 								data = dataList.get(i);
 								ItemStack book = BookFactory.newBook(data);
@@ -133,7 +137,7 @@ public class PluginDocumentation extends JavaPlugin{
 							sender.sendMessage(ChatColor.GREEN+"Here you go!");
 						}
 					}catch (Exception e){
-						e.printStackTrace();
+						//e.printStackTrace();
 						sender.sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
 						sender.sendMessage("If you are certain that the documentation exists, report this to the plugin author ASAP!");
 						if (config.getBoolean("Debug")){

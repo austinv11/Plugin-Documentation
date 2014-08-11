@@ -15,6 +15,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.meta.BookMeta;
 import org.json.simple.JSONArray;
@@ -29,7 +30,8 @@ public class BookOpenListener implements Listener{
 	//TODO Add event for fetching links
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event){
-		if (!event.isCancelled()){
+		//if (!event.isCancelled()){
+		if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK){
 			if (Resources.CONFG.getBoolean("ShowLinks")){
 				if (event.getItem().getType() == Material.WRITTEN_BOOK){
 					if (event.getItem().hasItemMeta()){

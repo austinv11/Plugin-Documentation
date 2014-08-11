@@ -14,15 +14,15 @@ import io.github.austinv11.PluginDocumentation.Lib.URLUtils;
 import io.github.austinv11.PluginDocumentation.Main.Resources;
 
 public class BookDataFactory {
-	public static HashMap<String, HashMap<String,String>> linkCache;
-	private static HashMap<String, BookData> dataCache;
+	public static HashMap<String, HashMap<String,String>> linkCache = new HashMap<String, HashMap<String,String>>();
+	private static HashMap<String, BookData> dataCache = new HashMap<String, BookData>();
 	
 	/**
 	 * Dumps the cached data.
 	 */
 	public static void dump(){
-		linkCache = null;
-		dataCache = null;
+		linkCache = new HashMap<String, HashMap<String,String>>();
+		dataCache = new HashMap<String,BookData>();
 	}
 	
 	/**
@@ -48,9 +48,11 @@ public class BookDataFactory {
 		}else{
 			//int chapters = (int) json.get("Chapters");
 			int chapters = json.Chapters;
-			HashMap<Integer, List<String>> contents = null;
+			HashMap<Integer, List<String>> contents = new HashMap<Integer, List<String>>();
 			boolean startAtOne = false;
-			if (!URLUtils.URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+plugin.toUpperCase()+"/Chatpter0.txt").contains("Not Found")){
+			try{
+				URLUtils.URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+plugin.toUpperCase()+"/Chapter0.txt");
+			}catch(Exception e){
 				startAtOne = true;
 			}
 			int key = 0;
@@ -62,7 +64,7 @@ public class BookDataFactory {
 				contents.put(key, URLUtils.readGithub(plugin.toUpperCase()+"/Chapter"+key+".txt"));
 			}
 			if (/*(boolean) json.get("HasLinks")*/json.HasLinks){
-				HashMap<String,String> links = null;
+				HashMap<String,String> links = new HashMap<String,String>();
 				//JSONArray array = (JSONArray) json.get("Links");
 				Links[] array = json.Links;
 				for (int j = 0; j < /*array.size()*/array.length; j++){
@@ -104,14 +106,20 @@ public class BookDataFactory {
 			if (dataCache.containsKey(/*array.get(iterator)*/array[iterator])){
 				data.add(dataCache.get(/*array.get(iterator)*/array[iterator]));
 			}else{
+				HashMap<Integer, List<String>> contents = new HashMap<Integer, List<String>>();
 				//JSONObject sectionJSON = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/"+array.get(iterator)+"/index.json"));
 				Index sectionJSON = JSONUtils.listToJSON(URLUtils.readGithub(plugin.toUpperCase()+"/"+array[iterator]+"/index.json"));
 				//Modified, but taken from newBookData()
 				//int chapters = (int) sectionJSON.get("Chapters");
 				int chapters = sectionJSON.Chapters;
-				HashMap<Integer, List<String>> contents = null;
+				if (chapters == 0){
+					chapters = 1;
+				}
+				//Resources.LOGGER.info(chapters+"");
 				boolean startAtOne = false;
-				if (!URLUtils.URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+plugin.toUpperCase()+"/"+array[iterator]/*.get(iterator)*/+"/Chatpter0.txt").contains("Not Found")){
+				try{
+					URLUtils.URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+plugin.toUpperCase()+"/"+array[iterator]/*.get(iterator)*/+"/Chapter0.txt");
+				}catch(Exception e){
 					startAtOne = true;
 				}
 				int key = 0;
@@ -120,10 +128,12 @@ public class BookDataFactory {
 					if (startAtOne){
 						key++;
 					}
+					//Resources.LOGGER.info(URLUtils.readGithub(plugin.toUpperCase()+"/"+array[iterator]/*.get(iterator)*/+"/Chapter"+key+".txt").toString());
 					contents.put(key, URLUtils.readGithub(plugin.toUpperCase()+"/"+array[iterator]/*.get(iterator)*/+"/Chapter"+key+".txt"));
 				}
+				//Resources.LOGGER.info("TEST:"+contents.toString());
 				if (/*(boolean) sectionJSON.get("HasLinks")*/sectionJSON.HasLinks){
-					HashMap<String,String> links = null;
+					HashMap<String,String> links = new HashMap<String, String>();
 					//JSONArray sectionArray = (JSONArray) sectionJSON.get("Links");
 					Links[] sectionArray = sectionJSON.Links;
 					for (int j = 0; j < sectionArray.length/*.size()*/; j++){

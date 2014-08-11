@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
 public class BookFactory {
-	private static HashMap<String, ItemStack> bookCache;
+	private static HashMap<String, ItemStack> bookCache = new HashMap<String, ItemStack>();
 	
 	/**
 	 * Creates a new written book with the given data.
@@ -32,7 +32,8 @@ public class BookFactory {
 			bm.setLore(lore);
 			bm.setDisplayName(data.getTitle());
 			bm.setTitle(data.getTitle());
-			String[] array = (String[]) data.getPages().toArray();
+			String[] array = data.getPages().toArray(new String[data.getPages().size()]);
+			//Resources.LOGGER.info("TEST:"+data.getPages().toString());
 			bm.addPage(array);
 			book.setItemMeta(bm);
 			if (Resources.CONFG.getBoolean("InternalCaching")){
@@ -48,6 +49,6 @@ public class BookFactory {
 	 * Dumps the cached data.
 	 */
 	public static void dump(){
-		bookCache = null;
+		bookCache = new HashMap<String, ItemStack>();
 	}
 }
