@@ -1,5 +1,7 @@
-Sectioned: "false",
+{
+  Sectioned: "false",
 Version: "1.0.0-pre",
 HasLinks: "true",
 Chapters: "3",
 Links: [{Title: Screenshots,URL: "coolpix.com"},{Title: "See more info here:",URL: "wiki.website.com"}]
+}
