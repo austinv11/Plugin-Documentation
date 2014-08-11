@@ -5,3 +5,4 @@
 * Possibly use another host besides this repo
 * Revert back to json simple use instead of gson
 * Remove the maven-shading plugin (and consequently gson usage) to lower the plugin size
+* Add 'chat tab' completion to commands
