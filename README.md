@@ -77,7 +77,7 @@ Links: [{Title: "Screenshots",URL: "coolpix.com"},{Title: "See more info here",U
 ##Formatting documentation
 Each chapter is written in a file with a title in the following format: Chapter[Insert Chapter Number Here].txt
 When writing a chapter, you can specify a title by adding $$TITLE$$="Insert title in these quotes" at the top of the page.
-You could then write the entire chapter in this text file without any special formatting! This plugin supports color codes (seen [here](http://ess.khhq.net/mc/)).
+You could then write the entire chapter in this text file without any special formatting! This plugin supports  [color codes](http://ess.khhq.net/mc/).
 
 ##Formatting documentation with sections
 
