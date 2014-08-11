@@ -6,15 +6,18 @@ import java.util.List;
 import io.github.austinv11.PluginDocumentation.API.BookData;
 import io.github.austinv11.PluginDocumentation.API.BookDataFactory;
 import io.github.austinv11.PluginDocumentation.API.BookFactory;
+import io.github.austinv11.PluginDocumentation.Lib.BookMetaHelper;
 import io.github.austinv11.PluginDocumentation.Lib.URLUtils;
 import io.github.austinv11.PluginDocumentation.Listeners.BookOpenListener;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PluginDocumentation extends JavaPlugin{
@@ -149,6 +152,28 @@ public class PluginDocumentation extends JavaPlugin{
 				}
 				return true;
 			}
+		}else if (cmd.getName().equalsIgnoreCase("book-converter")){
+			if (sender instanceof Player){
+				Player player = (Player) sender;
+				if (player.getInventory().getItemInHand().getType() == Material.WRITTEN_BOOK){
+					try{
+						sender.sendMessage("Attempting to post onto pastebin...");
+						BookMeta bm = (BookMeta) player.getInventory().getItemInHand().getItemMeta();
+						sender.sendMessage("The contents of this book has been posted! Visit it here: "+ChatColor.GOLD+BookMetaHelper.sendToPastebin(bm));
+					}catch (Exception e){
+						sender.sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
+						sender.sendMessage("Report this to the plugin author ASAP!");
+						if (config.getBoolean("Debug")){
+							e.printStackTrace();
+						}
+					}
+				}else{
+					sender.sendMessage(ChatColor.RED+"Sorry, you must be holding a written book in your hand");
+				}
+			}else{
+				sender.sendMessage(ChatColor.RED+"Sorry console, this is not for you");
+			}
+			return true;
 		}
 		return false;
 	}

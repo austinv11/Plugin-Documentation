@@ -29,6 +29,12 @@ commands:
       permission: PluginDocumentation.plugin-help
       permission-message: You don't have permission
       aliases: [plugins-help,pluginhelp,pluginshelp]
+   book-converter:
+      description: Attempts to pastebin the contents of the book you’re holding.
+      usage: /<command>
+      permission: PluginDocumentation.book-converter
+      permission-message: You don't have permission
+      aliases: [bookconverter]
 
 permissions:
    PluginDocumentation.*:
@@ -44,3 +50,5 @@ permissions:
    PluginDocumentation.plugin-help:
       description: Attempts to fetch documentation for the given plugin.
       default: true
+   PluginDocumentation.book-converter:
+      description: Attempts to pastebin the contents of the book you’re holding.
