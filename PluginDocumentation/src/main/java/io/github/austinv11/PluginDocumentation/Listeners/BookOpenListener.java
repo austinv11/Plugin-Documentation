@@ -75,6 +75,9 @@ public class BookOpenListener implements Listener{
 										}catch (Exception e){
 											event.getPlayer().sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
 											event.getPlayer().sendMessage("Please contact the plugin author ASAP!");
+											if (Resources.CONFG.getBoolean("Debug")){
+												e.printStackTrace();
+											}
 										}
 									}
 									break;

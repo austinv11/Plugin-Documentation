@@ -33,6 +33,7 @@ public class PluginDocumentation extends JavaPlugin{
 		config.addDefault("InternalCaching", true);
 		//config.addDefault("ExternalCaching", true); TODO
 		config.addDefault("ShowLinks", true);
+		config.addDefault("Debug", false);
 		config.options().copyDefaults(true);
 		saveConfig();
 	}
@@ -72,6 +73,9 @@ public class PluginDocumentation extends JavaPlugin{
 			}catch (Exception e){
 				sender.sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
 				sender.sendMessage("Please report this to the plugin author ASAP!");
+				if (config.getBoolean("Debug")){
+					e.printStackTrace();
+				}
 			}
 			return true;
 		}else if (cmd.getName().equalsIgnoreCase("dump")){
@@ -103,6 +107,9 @@ public class PluginDocumentation extends JavaPlugin{
 			}catch (Exception e){
 				sender.sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
 				sender.sendMessage("Please report this to the plugin author ASAP!");
+				if (config.getBoolean("Debug")){
+					e.printStackTrace();
+				}
 			}
 			return true;
 		}else if (cmd.getName().equalsIgnoreCase("plugin-help")){
@@ -129,6 +136,9 @@ public class PluginDocumentation extends JavaPlugin{
 						e.printStackTrace();
 						sender.sendMessage(ChatColor.RED+"[ERROR] Unhandled exception: "+e.getMessage());
 						sender.sendMessage("If you are certain that the documentation exists, report this to the plugin author ASAP!");
+						if (config.getBoolean("Debug")){
+							e.printStackTrace();
+						}
 					}
 				}else{
 					sender.sendMessage(ChatColor.RED+"Sorry, only a player can perform this command");
