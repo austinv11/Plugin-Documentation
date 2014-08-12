@@ -61,7 +61,7 @@ public class BookOpenListener implements Listener{
 												for (int j = 0; j < /*array.size()*/array.length; j++){
 													/*JSONObject object = (JSONObject) array.get(j);
 													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', (String) object.get("Title"))+": "+ChatColor.translateAlternateColorCodes('&', (String) object.get("URL")));*/
-													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', array[j].Title)+": "+ChatColor.translateAlternateColorCodes('&', array[j].URL));
+													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', array[j].Title)+": "+ChatColor.RESET+ChatColor.translateAlternateColorCodes('&', array[j].URL));
 												}
 											}else{
 												//JSONObject json = JSONUtils.listToJSON(URLUtils.readGithub(title+"/index.json"));
@@ -71,7 +71,7 @@ public class BookOpenListener implements Listener{
 												for (int j = 0; j < /*array.size()*/array.length; j++){
 													/*JSONObject object = (JSONObject) array.get(j);
 													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', (String) object.get("Title"))+": "+ChatColor.translateAlternateColorCodes('&', (String) object.get("URL")));*/
-													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', array[j].Title)+": "+ChatColor.translateAlternateColorCodes('&', array[j].URL));
+													event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', array[j].Title)+": "+ChatColor.RESET+ChatColor.translateAlternateColorCodes('&', array[j].URL));
 												}
 											}
 										}catch (Exception e){
