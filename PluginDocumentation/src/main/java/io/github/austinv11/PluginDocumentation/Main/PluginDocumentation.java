@@ -41,6 +41,7 @@ public class PluginDocumentation extends JavaPlugin{
 		//config.addDefault("ExternalCaching", true); TODO
 		config.addDefault("ShowLinks", true);
 		config.addDefault("Debug", false);
+		config.addDefault("DevBranch", false);
 		config.options().copyDefaults(true);
 		saveConfig();
 	}

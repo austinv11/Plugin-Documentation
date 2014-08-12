@@ -46,7 +46,11 @@ public class URLUtils {
 	 * @throws Exception
 	 */
 	public static List<String> readGithub(String path) throws Exception{
-		List<String> in = URLReader("https://raw.github.com/austinv11/Plugin-Documentation/master/"+path);
+		String branch = "master";
+		if (Resources.CONFG.getBoolean("Debug")){
+			branch = "unchecked-doc-updates";
+		}
+		List<String> in = URLReader("https://raw.github.com/austinv11/Plugin-Documentation/"+branch+"/"+path);
 		if (in.contains("Not Found")){
 			throw new NotFoundException("404 Path "+path+" not found");
 		}
