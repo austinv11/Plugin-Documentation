@@ -62,6 +62,7 @@ public class BookDataFactory {
 					key++;
 				}
 				contents.put(key, URLUtils.readGithub(plugin.toUpperCase()+"/Chapter"+key+".txt"));
+				//Resources.LOGGER.info(contents.get(key).toString());
 			}
 			if (/*(boolean) json.get("HasLinks")*/json.HasLinks){
 				HashMap<String,String> links = new HashMap<String,String>();

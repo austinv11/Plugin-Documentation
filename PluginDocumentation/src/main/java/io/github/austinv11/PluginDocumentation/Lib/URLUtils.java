@@ -1,5 +1,7 @@
 package io.github.austinv11.PluginDocumentation.Lib;
 
+import io.github.austinv11.PluginDocumentation.Main.Resources;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -48,6 +50,7 @@ public class URLUtils {
 		if (in.contains("Not Found")){
 			throw new NotFoundException("404 Path "+path+" not found");
 		}
+		//Resources.LOGGER.info(in.toString());
 		return in;
 	}
 	

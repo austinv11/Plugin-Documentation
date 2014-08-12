@@ -147,26 +147,33 @@ public class BookData implements IBookData{
 					key++;
 				}
 				temp = CONTENTS.get(key);
+				//Resources.LOGGER.info(temp.toString());
 				if (temp.get(0).contains("$$TITLE$$")){
 					chapter = ChatColor.translateAlternateColorCodes('&', temp.get(0).replace("$$TITLE$$", "").replaceFirst("=", "").replaceAll("\"", "").trim());
 					temp.remove(0);
 				}
 				if (chapter != null){
-					text = chapter+"\n\n"+ChatColor.RESET;
+					text = chapter+"-\n"+ChatColor.RESET;
 				}
 				for (int j = 0; j < temp.size(); j++){
 					if (text != null){
-						text = text+ChatColor.translateAlternateColorCodes('&', temp.get(j));
+						text = text+"\n"+ChatColor.translateAlternateColorCodes('&', temp.get(j));
 					}else{
 						text = ChatColor.translateAlternateColorCodes('&', temp.get(j));
 					}
 				}
+				//Resources.LOGGER.info(text);
 				if (text.length() > 256){//TODO improve page wrapping (so words don't get cut off)
 					while (text.length() > 256){
+						//Resources.LOGGER.info("1"+text.substring(0, 256));
+						//Resources.LOGGER.info("2"+text.substring(256));
 						page.add(text.substring(0, 256));
 						text = text.substring(256);
 						if (chapter != null){
-							text = chapter+ChatColor.RESET+" (cont.)\n\n";
+							text = chapter+ChatColor.RESET+" (cont.)-\n\n"+text;
+						}
+						if (text.length() <= 256){
+							page.add(text.trim());
 						}
 					}
 				}else{
