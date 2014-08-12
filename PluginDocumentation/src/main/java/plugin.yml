@@ -18,7 +18,7 @@ commands:
       permission: PluginDocumentation.dump
       permission-message: You don't have permission
    plugin-list:
-      description: Lists all the currently supported plugins.
+      description: Lists all the currently supported plugins (green plugins are currently on the server, red aren’t).
       usage: /<command>
       permission: PluginDocumentation.plugin-list
       permission-message: You don't have permission

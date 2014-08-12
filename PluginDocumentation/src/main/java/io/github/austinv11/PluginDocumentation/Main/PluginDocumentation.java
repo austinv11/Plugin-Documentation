@@ -10,6 +10,7 @@ import io.github.austinv11.PluginDocumentation.Lib.BookMetaHelper;
 import io.github.austinv11.PluginDocumentation.Lib.URLUtils;
 import io.github.austinv11.PluginDocumentation.Listeners.BookOpenListener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -104,9 +105,17 @@ public class PluginDocumentation extends JavaPlugin{
 				String list = null;
 				for (int i = 0; i < temp.size(); i++){
 					if (list == null){
-						list = temp.get(i).replaceFirst("-","").trim();
+						if (Bukkit.getPluginManager().isPluginEnabled(temp.get(i).replaceFirst("-","").trim())){
+							list = ChatColor.GREEN+temp.get(i).replaceFirst("-","").trim();
+						}else{
+							list = ChatColor.RED+temp.get(i).replaceFirst("-","").trim();
+						}
 					}else{
-						list = list+", "+temp.get(i).replaceFirst("-","").trim();
+						if (Bukkit.getPluginManager().isPluginEnabled(temp.get(i).replaceFirst("-","").trim())){
+							list = list+ChatColor.RESET+", "+ChatColor.GREEN+temp.get(i).replaceFirst("-","").trim();
+						}else{
+							list = list+ChatColor.RESET+", "+ChatColor.RED+temp.get(i).replaceFirst("-","").trim();
+						}
 					}
 				}
 				sender.sendMessage(list);
