@@ -1,5 +1,6 @@
 package io.github.austinv11.PluginDocumentation.API;
 
+import io.github.austinv11.PluginDocumentation.Lib.StringUtils;
 import io.github.austinv11.PluginDocumentation.Main.Resources;
 
 import java.util.ArrayList;
@@ -167,8 +168,9 @@ public class BookData implements IBookData{
 					while (text.length() > 256){
 						//Resources.LOGGER.info("1"+text.substring(0, 256));
 						//Resources.LOGGER.info("2"+text.substring(256));
-						page.add(text.substring(0, 256));
-						text = text.substring(256);
+						int endIndex = StringUtils.wrapText(text, 0, 256);
+						page.add(text.substring(0, endIndex).trim());
+						text = text.substring(endIndex);
 						if (chapter != null){
 							text = chapter+ChatColor.RESET+" (cont.)-\n\n"+text;
 						}
