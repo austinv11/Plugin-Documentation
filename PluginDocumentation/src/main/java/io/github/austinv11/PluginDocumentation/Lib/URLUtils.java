@@ -38,7 +38,7 @@ public class URLUtils {
 	
 	/**
 	 * Shortcut method, automatically appends path to the PluginDocumentation (raw) repo.
-	 * @see URLReader
+	 * @see #URLReader(String)
 	 * @param path The path from the root directory in the PluginDocumentation repo.
 	 * @return A list representing the contents of the given url.
 	 * @throws Exception
