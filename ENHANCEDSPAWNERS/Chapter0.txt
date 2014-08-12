@@ -1,5 +1,5 @@
-$$TITLE$$="Customizing Your Spawners (in Survival)"\n
-&lStep One&r: Create a tempered egg by smelting an egg (or Attuned Egg).\n
-&lStep Two&r: Create an infused egg (enchanted book could have any enchantment and the egg in the middle is a tempered egg).\n
-&lStep Three&r: Left-Click a mob with the infused egg to get an Attuned Egg with the given mob.\n
-&lStep Four&r: Right-Click on a mob spawner with the Attuned Egg to change the mob it spawns!\n
+$$TITLE$$="Customizing Your Spawners (in Survival)"
+&lStep One&r: Create a tempered egg by smelting an egg (or Attuned Egg).
+&lStep Two&r: Create an infused egg (enchanted book could have any enchantment and the egg in the middle is a tempered egg).
+&lStep Three&r: Left-Click a mob with the infused egg to get an Attuned Egg with the given mob.
+&lStep Four&r: Right-Click on a mob spawner with the Attuned Egg to change the mob it spawns!
