@@ -168,9 +168,12 @@ public class BookData implements IBookData{
 					while (text.length() > 256){
 						//Resources.LOGGER.info("1"+text.substring(0, 256));
 						//Resources.LOGGER.info("2"+text.substring(256));
-						int endIndex = StringUtils.wrapText(text, 0, 256);
-						page.add(text.substring(0, endIndex).trim());
-						text = text.substring(endIndex);
+						//int endIndex = StringUtils.wrapText(text, 0, 256);
+						//Resources.LOGGER.info("1"+endIndex);
+						//Resources.LOGGER.info("2"+text.substring(0, endIndex).trim());
+						page.add(text.substring(0, 256).trim());
+						text = text.substring(256);
+						Resources.LOGGER.info("3"+text);
 						if (chapter != null){
 							text = chapter+ChatColor.RESET+" (cont.)-\n\n"+text;
 						}

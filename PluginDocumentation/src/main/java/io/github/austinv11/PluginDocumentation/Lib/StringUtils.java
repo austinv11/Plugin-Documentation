@@ -1,9 +1,10 @@
 package io.github.austinv11.PluginDocumentation.Lib;
 
-public class StringUtils {
+public class StringUtils {//FIXME
 	
 	/**
 	 * Improved String.substring() method, prevents cutting off words.
+	 * @deprecated
 	 * @param string String to cut.
 	 * @param beginIndex The beginning index, inclusive.
 	 * @return The suggested beginIndex.
@@ -20,6 +21,7 @@ public class StringUtils {
 	
 	/**
 	 * Improved String.substring() method, prevents cutting off words.
+	 * @deprecated
 	 * @param string String to cut.
 	 * @param beginIndex The beginning index, inclusive.
 	 * @param endIndex The ending index, exclusive.
