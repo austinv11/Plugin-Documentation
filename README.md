@@ -3,6 +3,12 @@ Plugin-Documentation
 
 A project to document plugins and easily add it into in-game books
 
+Wanna Help Document?
+====================
+
+Either make a pull-request adding the desired documentation (it _must_ be formatted as stated below). Or submit an issue containing the desired documentation (doesn't need to be formatted perfectly, but please format as much as possible).
+Don't worry, if you help to add something here I'll make sure that you're added to the CONTRIBUTORS.md ;)
+
 In-Game Usage
 =============
 
