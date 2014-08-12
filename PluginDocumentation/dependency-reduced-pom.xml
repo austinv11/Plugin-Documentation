@@ -4,7 +4,7 @@
   <groupId>io.github.austinv11</groupId>
   <artifactId>PluginDocumentation</artifactId>
   <name>PluginDocumentation</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <url>http://maven.apache.org</url>
   <build>
     <plugins>
