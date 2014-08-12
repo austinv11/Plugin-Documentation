@@ -1,0 +1,3 @@
+&lNote&r: This plugin is just a library for other plugins to use!
+
+GUIAPI is designed to allow plugins to quickly and easily create menus (hence the “GUI”) part of the name.

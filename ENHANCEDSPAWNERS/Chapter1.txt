@@ -1,0 +1,3 @@
+$$TITLE$$="Customizing Your Spawners (as an Admin)"
+&lStep One&r: Look at a spawner and do the /set-mob <mob> command to change the mob it spawn.
+&lStep Two&r: Look at a spawner and do the /set-delay <delay> command to change the spawning delay.

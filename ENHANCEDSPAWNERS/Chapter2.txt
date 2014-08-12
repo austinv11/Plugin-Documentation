@@ -1,0 +1,5 @@
+$$TITLE$$="Miscellaneous Features"
+&lSilk Touching Spawners&r: If your pickaxe has silk touch, you could mine spawners to move them!
+&lUsing Redstone With Spawners&r: (This is disabled by default because it can be unreliable), if a spawner is receiving a redstone signal, it won’t spawn mobs!
+&lDungeon Loot&r: Yes, this plugin adds dungeon loot. There is a low chance that you’ll find Tempered Eggs, 'Mystery' Attuned Eggs, or (if you’re really lucky) a Spawner Finder.
+&lSpawner Finder&r: With the aid of xp, right-clicking with this’ll make the compass point to the nearest spawner for a limited amount of time.
