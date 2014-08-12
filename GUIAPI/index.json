@@ -3,5 +3,5 @@ Sectioned: "false",
 Version: "1.0.0",
 HasLinks: "true",
 Chapters: "1",
-Links: [{Title: "&6JavaDocs",URL: "http://austinv11.github.io/GUIAPIDocs/"},{Title: "&6Code Examples",URL: "https://github.com/austinv11/GUIAPI-Example"},{Title: "&6Bukkit Dev Page", URL: "http://http://dev.bukkit.org/bukkit-plugins/guiapi/"}]
+Links: [{Title: "&6JavaDocs",URL: "http://austinv11.github.io/GUIAPIDocs/"},{Title: "&6Code Examples",URL: "https://github.com/austinv11/GUIAPI-Example"},{Title: "&6Bukkit Dev Page",URL: "http://dev.bukkit.org/bukkit-plugins/guiapi/"}]
 }
