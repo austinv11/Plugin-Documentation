@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Plugin-documentation by austinv11</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/austinv11/Plugin-Documentation">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Plugin-documentation</h1>
+            <h2>A project to document plugins and easily add it into in-game books</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/austinv11/Plugin-Documentation/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/austinv11/Plugin-Documentation/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a name="plugin-documentation" class="anchor" href="#plugin-documentation"><span class="octicon octicon-link"></span></a>Plugin-Documentation</h1>
+
+<p>A project to document plugins and easily add it into in-game books</p>
+
+<h1>
+<a name="wanna-help-document" class="anchor" href="#wanna-help-document"><span class="octicon octicon-link"></span></a>Wanna Help Document?</h1>
+
+<p>Either make a pull-request adding the desired documentation (it <em>must</em> be formatted as stated below). Or submit an issue containing the desired documentation (doesn't need to be formatted perfectly, but please format as much as possible).
+Don't worry, if you help to add something here I'll make sure that you're added to the CONTRIBUTORS.md ;)</p>
+
+<h1>
+<a name="in-game-usage" class="anchor" href="#in-game-usage"><span class="octicon octicon-link"></span></a>In-Game Usage</h1>
+
+<h2>
+<a name="how-it-works" class="anchor" href="#how-it-works"><span class="octicon octicon-link"></span></a>How it works</h2>
+
+<p>After using any of the commands (with the exception of /dump), the plugin will then read from various files in this repository. When using /plugin-list or /contributors, it'll generate a list from the respective PLUGINS.md and CONTRIBUTORS.md. When using /plugin-help, it'll look for the given plugin's index.json which gives the plugin 'directions' in order to find all the nesscesary info.
+This plugin also has a feature which allows for caching information from this repo internally. This will speed up the usage of commands (with the exception of the first time it is executed). However this is more taxing on RAM usage.</p>
+
+<h2>
+<a name="commands" class="anchor" href="#commands"><span class="octicon octicon-link"></span></a>Commands</h2>
+
+<ul>
+<li>/contributors (perm node: PluginDocumentation.contributors): Prints a list of contributors to the project.</li>
+<li>/dump (perm node: PluginDocumentation.dump): Dumps all currently cached data, lowering RAM usage (albeit temporarily)</li>
+<li>/plugin-list (perm node: PluginDocumentation.plugin-list): Prints a list of plugins supported.</li>
+<li>/plugin-help (perm node: PluginDocumentation.plugin-help): Attempts to fetch the documentation for the given plugin</li>
+<li>/book-converter (perm node: PluginDocumentation.book-converter): Attempts to paste the contents of the book in your hand to pastebin-useful for transferring in-game documentation to this project. <strong>WARNING:</strong> May be removed in the future.</li>
+</ul><h2>
+<a name="config-options" class="anchor" href="#config-options"><span class="octicon octicon-link"></span></a>Config options</h2>
+
+<ul>
+<li>InternalCaching (deafault: true): Determines whether the plugin should actively cache data.</li>
+<li>ShowLinks (default: true): Determines whether the plugin will display links if any given plugin documentation book has links.</li>
+<li>Debug (deafult: false): Determines whether the plugin will print the stack trace if a command encounters an error.</li>
+</ul><h1>
+<a name="formatting" class="anchor" href="#formatting"><span class="octicon octicon-link"></span></a>Formatting</h1>
+
+<h2>
+<a name="plugin-sections" class="anchor" href="#plugin-sections"><span class="octicon octicon-link"></span></a>Plugin Sections</h2>
+
+<p>To create a new section for a plugin, you must create a new directory in the root directory with the exact name of the plugin (as seen when using /plugins) in all caps.</p>
+
+<h2>
+<a name="the-indexjson-file" class="anchor" href="#the-indexjson-file"><span class="octicon octicon-link"></span></a>The index.json file</h2>
+
+<p>Every plugin section needs an index.json file, this defines all important variables with the plugin's documentation</p>
+
+<h3>
+<a name="formatting-the-indexjson-file" class="anchor" href="#formatting-the-indexjson-file"><span class="octicon octicon-link"></span></a>Formatting the index.json file</h3>
+
+<p>If you want to learn about .json files, visit <a href="http://www.w3schools.com/json/json_syntax.asp">here</a>. Every index.json file <strong>must</strong> include the following variables: </p>
+
+<ul>
+<li>Sectioned (true/false) --Whether the documentation contains sections</li>
+<li>Version (String) --Must be changed after every revision</li>
+</ul><p>Based upon the aforementioned variables, some variables must be included, if Sectioned is true it must include:</p>
+
+<ul>
+<li>Sections (String Array) --A list of the names of the sections</li>
+</ul><p>If Sectioned is false, it must include:</p>
+
+<ul>
+<li>HasLinks (true/false) --Whether the plugin documentation has useful links</li>
+<li>Chapters (integer) --The number of chapters</li>
+</ul><p>If HasLinks is true, it must include:</p>
+
+<ul>
+<li>Links (JSON Array) --An Array of links and their titles</li>
+</ul><h3>
+<a name="example-indexjson-file-for-towny" class="anchor" href="#example-indexjson-file-for-towny"><span class="octicon octicon-link"></span></a>Example index.json file for Towny</h3>
+
+<div class="highlight highlight-JSON"><pre><span class="p">{</span>
+<span class="err">Sectioned:</span> <span class="nt">"true"</span><span class="p">,</span>
+<span class="err">Version:</span> <span class="nt">"1.0.0"</span><span class="p">,</span>
+<span class="err">Sections:</span> <span class="err">[</span><span class="nt">"Towns"</span><span class="p">,</span> <span class="nt">"Nations"</span><span class="err">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="example-indexjson-file-for-a-generic-plugin" class="anchor" href="#example-indexjson-file-for-a-generic-plugin"><span class="octicon octicon-link"></span></a>Example index.json file for a generic plugin</h3>
+
+<div class="highlight highlight-JSON"><pre><span class="p">{</span>
+<span class="err">Sectioned:</span> <span class="nt">"false"</span><span class="p">,</span>
+<span class="err">Version:</span> <span class="nt">"1.0.0-pre"</span><span class="p">,</span>
+<span class="err">HasLinks:</span> <span class="nt">"true"</span><span class="p">,</span>
+<span class="err">Chapters:</span> <span class="nt">"3"</span><span class="p">,</span>
+<span class="err">Links:</span> <span class="err">[{Title:</span> <span class="nt">"Screenshots"</span><span class="p">,</span><span class="err">URL:</span> <span class="nt">"coolpix.com"</span><span class="p">}</span><span class="err">,</span><span class="p">{</span><span class="err">Title:</span> <span class="nt">"See more info here"</span><span class="p">,</span><span class="err">URL:</span> <span class="nt">"wiki.website.com"</span><span class="p">}</span><span class="err">]</span>
+<span class="err">}</span>
+</pre></div>
+
+<h2>
+<a name="formatting-documentation" class="anchor" href="#formatting-documentation"><span class="octicon octicon-link"></span></a>Formatting documentation</h2>
+
+<p>Each chapter is written in a file with a title in the following format: Chapter[Insert Chapter Number Here].txt
+When writing a chapter, you can specify a title by adding $$TITLE$$="Insert title in these quotes" at the top of the page.
+You could then write the entire chapter in this text file without any special formatting! This plugin supports  <a href="http://ess.khhq.net/mc/">color codes</a>.</p>
+
+<h2>
+<a name="formatting-documentation-with-sections" class="anchor" href="#formatting-documentation-with-sections"><span class="octicon octicon-link"></span></a>Formatting documentation with sections</h2>
+
+<p>Each section must have its own directory, named after the section title as defined with the Sections variable <strong>THEY MUST MATCH EXACTLY</strong>, each directory must have its own index.json file. This index.json file is formatted just like the original, except it must be done as if Sectioned is false (the Sectioned and Version variables are also unneeded). Each section can then be treated as documentation for individual plugins.</p>
+
+<h3>
+<a name="example-indexjson" class="anchor" href="#example-indexjson"><span class="octicon octicon-link"></span></a>Example index.json</h3>
+
+<div class="highlight highlight-JSON"><pre><span class="p">{</span>
+<span class="err">HasLinks:</span> <span class="nt">"true"</span><span class="p">,</span>
+<span class="err">Chapters:</span> <span class="nt">"3"</span><span class="p">,</span>
+<span class="err">Links:</span> <span class="err">[{Title:</span> <span class="nt">"Screenshots"</span><span class="p">,</span><span class="err">URL:</span> <span class="nt">"coolpix.com"</span><span class="p">}</span><span class="err">,</span><span class="p">{</span><span class="err">Title:</span> <span class="nt">"See more info here"</span><span class="p">,</span><span class="err">URL:</span> <span class="nt">"wiki.website.com"</span><span class="p">}</span><span class="err">]</span>
+<span class="err">}</span>
+</pre></div>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/austinv11">austinv11</a> can be found on <a href="https://github.com/austinv11/Plugin-Documentation">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
