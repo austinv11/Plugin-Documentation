@@ -173,7 +173,7 @@ public class BookData implements IBookData{
 						//Resources.LOGGER.info("2"+text.substring(0, endIndex).trim());
 						page.add(text.substring(0, 256).trim());
 						text = text.substring(256);
-						Resources.LOGGER.info("3"+text);
+						//Resources.LOGGER.info("3"+text);
 						if (chapter != null){
 							text = chapter+ChatColor.RESET+" (cont.)-\n\n"+text;
 						}
