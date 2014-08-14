@@ -47,7 +47,7 @@ public class URLUtils {
 	 */
 	public static List<String> readGithub(String path) throws Exception{
 		String branch = "master";
-		if (Resources.CONFG.getBoolean("Debug")){
+		if (Resources.CONFG.getBoolean("DevBranch")){
 			branch = "unchecked-doc-updates";
 		}
 		List<String> in = URLReader("https://raw.github.com/austinv11/Plugin-Documentation/"+branch+"/"+path);
