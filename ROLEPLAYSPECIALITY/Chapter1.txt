@@ -1,0 +1,45 @@
+$$TITLE$$="&lCommands"
+/rpreload:
+description:
+Reload the plugin without turn off the server
+
+/rp:
+description: 
+Des/activation of RP chat colour and voice range.
+
+/rp list:
+aliases: /rp l
+description:
+Show a list of autorised colours.
+
+/rp :
+description:
+Change your own current RP colour.
+
+/do :
+description:
+Send a single message in RP colour , in voice range and between asteriscs.
+
+/shout:
+aliases: sh
+description: 
+Shout a single RP message in RP color, between '*' and in twice the voice range.
+
+/think:
+aliases: th
+description: 
+Send a thought in chat, in voice range (todo: to those who have "read in minds" permission only)
+
+/destin:
+aliases: ds
+description: 
+Throw destiny roll dice one time and show if your action failed or succeed.
+
+/loot:
+aliases: lt
+description: 
+Same than for actions, this time destiny roll dice will choose a number between 1 and 100 e.g. to decide which player will loot an item
+
+/spy:
+description: 
+En/disable the spy mode for moderators to make them able to receive any RP messages even by bypassing voice range limit

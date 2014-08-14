@@ -1,0 +1,51 @@
+$$TITLE$$="&lMisc."
+Compatibility: 
+BPermissions Compatibility.
+
+Dependencies:
+WorldGuard and WGCustomFlags needed to use rp flag.
+
+Permissions:
+roleplayspeciality.*:
+description: Allows full plugin usage.
+default: false
+children:
+roleplayspeciality.do: true
+roleplayspeciality.think: true
+roleplayspeciality.shout: true
+roleplayspeciality.rp: true
+roleplayspeciality.rpreload: true
+roleplayspeciality.destin: true
+roleplayspeciality.loot: true
+
+roleplayspeciality.rp:
+description: Allows full usage of the "/rp" command. Should never be false.
+default: true
+
+roleplayspeciality.do:
+description: Allows full usage of the "/do" command.
+default: true
+
+roleplayspeciality.think:
+description: Allows usage of the "/think" command.
+default: true
+
+roleplayspeciality.shout:
+description: Allows usage of the "/shout" command.
+default: true
+
+roleplayspeciality.rpreload:
+description: Allows usage of the "/rpreload" command. Admin-only recommended.
+default: false
+
+roleplayspeciality.destin:
+description: Allows usage of the "/destin" command.
+default: true
+
+roleplayspeciality.loot:
+description: Allows usage of the "/loot" command.
+default: true
+
+roleplayspeciality.bypass:
+description: Allows usage of "/spy" command. Admin-only recommended.
+default: false
