@@ -1,0 +1,3 @@
+
+$$TITLE$$="&lGoal"
+The goal of this plugin is to utilize a large amount of tools to create a new kind of role playing experience, with total customization and real player personalizing. This plugin will be in development while I'm still implementing new ideas and receiving suggestions from users, as long as I'll have some free time to spend on it.

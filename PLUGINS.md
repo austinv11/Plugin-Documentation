@@ -1,3 +1,5 @@
 - GUIAPI
 - EnhancedSpawners
 - Timelist
+- RolePlaySpecialityWeapons
+- RolePlaySpeciality

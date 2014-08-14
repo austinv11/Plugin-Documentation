@@ -1,0 +1,4 @@
+$$TITLE$$="&lMisc."
+Compatibility: BPermissions Compatibility.
+
+Dependencies: No other plugin needed .

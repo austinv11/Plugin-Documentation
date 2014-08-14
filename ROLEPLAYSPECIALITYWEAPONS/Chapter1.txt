@@ -1,0 +1,8 @@
+$$TITLE$$="&lCommands"
+rpw:
+description: RolePlaySpeciality Weapons's principal command.
+usage: /rpw 
+
+level:
+description: Commande de création d'items levellés.
+usage: /level
